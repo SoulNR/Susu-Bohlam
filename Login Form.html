@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Anda</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap">
+    
+    <!-- Masukkan kode CSS di bawah ini -->
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url(IMG_20230113_111344.jpg) no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.); /* Ubah alpha (nilai keempat) menjadi 0.3 untuk transparansi */
+        }
+
+        /* Logo Styles */
+        .logo {
+            font-size: 2em;
+            color: white;
+            user-select: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Button Styles */
+        /* Styles for the button */
+        .btn {
+            width: 100%;
+            height: 45px;
+            background: rgb(29, 4, 97);
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            color: white;
+            font-weight: 500;
+            margin-top: 30px;
+        }
+
+
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        /* Styles for navigation links */
+        .navigation a {
+            position: relative;
+            font-size: 1.1em;
+            color: white; /* Specify the color you want here */
+            text-decoration: none;
+            font-weight: 500; /* Changed from 50% */
+            margin-left: 30px;
+        }
+
+        .navigation a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 3px;
+            background: white; /* Specify the color you want here */
+            border-radius: 3px;
+            transform-origin: right;
+            transform: scaleX(0); /* Changed from scalez(e) */
+            transition: transform 0.5s;
+        }
+
+        .navigation a:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        /* Styles for the login button */
+        .navigation .btnlogin-popup {
+            width: 110px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid white; /* Specify the color you want here */
+            outline: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            color: white; /* Specify the color you want here */
+            font-weight: 300;
+            margin-left: 50px;
+            transition: 0.5s;
+        }
+
+        /* Styles for the login button on hover */
+        .navigation .btnlogin-popup:hover {
+            background-color: rgb(29, 4, 97);
+            color: white;
+        }
+
+        /* Wrapper Styles */
+        .wrapper {
+            position: relative;
+            width: 400px;
+            height: auto; /* Ubah tinggi menjadi auto agar sesuai dengan kontennya */
+            background: rgba(255, 255, 255, 0.7); /* Ubah alpha (nilai keempat) menjadi 0.7 untuk transparansi */
+            border: 2px solid rgba(225, 225, 225, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 30px 0 rgba(0, 0, 0, 0.);
+            display: flex;
+            flex-direction: column; /* Mengubah tata letak ke tumpukan vertikal */
+            align-items: center;
+            padding: 20px; /* Menambahkan ruang di sekitar konten */
+            transform: scale(1);
+            transition: transform 0.5s, height 0.2s ease;
+            margin-top: 50px; /* Atur sesuai kebutuhan Anda */
+    /* Gaya-gaya lainnya */
+        }
+
+        /* Styles for the active wrapper when the popup is active */
+        .wrapper.active-popup {
+            transform: scale(1);
+        }
+
+        /* Styles for the active wrapper */
+        .wrapper.active {
+            height: 520px;
+        }
+
+        /* Styles for the form-box */
+        .wrapper .form-box {
+            width: 100%;
+            padding: 40px;
+        }
+
+        /* Styles for the login form-box */
+        .wrapper .form-box.login {
+            transition: transform 0.18s ease;
+            transform: translateY(0); /* Mengubah translatex(e) menjadi translateY(0) */
+            width: 100%; /* Memastikan kotak login mengisi lebar penuh */
+            max-width: 400px; /* Batasi lebar maksimum kotak login */
+            box-sizing: border-box; /* Hindari pembesaran kotak saat mengatur lebar */
+        }
+
+        /* Styles for the login form-box */
+        .wrapper .form-box.login {
+            transition: transform 0.18s ease;
+            transform: translateX(0); /* Ubah 'translatex(e)' menjadi 'translateX(0)' */
+        }
+
+        /* Styles for the active login form-box */
+        .wrapper.active .form-box.login {
+            transition: none;
+            transform: translateX(-480px); /* Ubah 'translatex(-480px)' */
+        }
+
+        /* Styles for the register form-box */
+        .wrapper .form-box.register {
+            position: absolute;
+            transition: none;
+            transform: translateX(400px); /* Ubah 'translatex(40@px)' menjadi 'translateX(400px)' */
+        }
+
+        /* Styles for the active register form-box */
+        .wrapper.active .form-box.register {
+            transition: transform 0.18s ease;
+            transform: translateX(0); /* Ubah 'transforn: translatex(a)' menjadi 'translateX(0)' */
+        }
+
+        /* Styles for h2 element */
+        .form-box h2 {
+            font-size: 2em;
+            color: rgb(29, 4, 97);
+            text-align: center;
+        }
+
+        /* Styles for input-box */
+        .input-box {
+            position: relative;
+            width: 100%;
+            height: 50px; /* Ubah '5@px' menjadi '50px' */
+            border-bottom: 2px solid black;
+            margin: 30px 0; /* Ubah '30px e' menjadi '30px 0' */
+        }
+
+        /* Styles for label in input-box */
+        .input-box label {
+            position: absolute;
+            top: 55%;
+            left: 5px; /* Ubah 'Spx' menjadi '5px' */
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: rgb(29, 4, 97);
+            font-weight: 500;
+            pointer-events: none;
+            transition: 0.5s;
+        }
+
+        /* Styles for input-box input on focus and when valid */
+        .input-box input:focus + label,
+        .input-box input:valid + label {
+            top: -7px;
+        }
+
+        /* Styles for input-box input */
+        .input-box input {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            color: rgb(29, 4, 97);
+            font-weight: 600; /* Changed from '680' */
+        }
+
+        /* Styles for the icon inside input-box */
+        .input-box .icon {
+            position: absolute;
+            right: 10px;
+            font-size: 1.8em;
+            color: black; /* Specify the color you want here */
+            line-height: 60px;
+        }
+
+        /* Styles for the 'ingat' container */
+        .ingat {
+            font-size: 0.9em;
+            color: rgb(29, 4, 97);
+            font-weight: 500;
+            margin: -15px 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Styles for the input inside 'ingat' */
+        .ingat label input {
+            accent-color: rgb(29, 4, 97);
+            margin-right: 3px;
+        }
+
+        /* Styles for the 'ingat' link */
+        .ingat a {
+            color: rgb(29, 4, 97);
+            text-decoration: none;
+        }
+
+        /* Styles for the 'ingat' link on hover */
+        .ingat a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles for the button */
+        .btn {
+            width: 100%;
+            height: 45px;
+            background: rgb(29, 4, 97);
+            border: none;
+            outline: none;
+            border-radius: 5px; /* Changed from 'Spx' */
+            cursor: pointer;
+            font-size: 1em;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Styles for the login-register container */
+        .login-register {
+            font-size: 0.9rem;
+            color: rgb(29, 4, 97);
+            text-align: center;
+            font-weight: 500;
+            margin: 25px 0 1px; /* Changed from 'nargin: 25px e 1px' */
+        }
+
+        /* Styles for the link inside login-register */
+        .login-register p a {
+            color: rgb(29, 4, 97);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Styles for the link inside login-register on hover */
+        .login-register p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles for the show password button */
+        .show-password-button {
+            background: transparent;
+            border: none;
+            outline: none;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgb(29, 4, 97);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!--header-->
+    <header>
+        <h2 class="logo">Soul & Me</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <button class="btnlogin-popup">Login</button>
+        </nav>
+    </header>
+
+ <!--halaman Login-->
+<div class="wrapper">
+    <div class="form-box login">
+        <h2>Login</h2>
+        <form action="#">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="ingat">
+                <label><input type="checkbox" id="remember-password"> Simpan password</label>
+                <a href="#" id="forgot-password-link">Lupa password?</a>
+            </div>
+            <button type="button" class="btn" id="remember-password-button">Login</button>
+            <div class="login-register">
+                <p>Buat akun baru?<a href="C:\Users\olan saul\.vscode\web perusahaan\PT SOUL AND MIND\Halaman Daftar.html" class="register-link">Daftar</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Script JavaScript -->
+<script>
+    // Fungsi untuk menangani klik pada tombol "Simpan password"
+    function handleRememberPassword() {
+        // Dapatkan status checkbox "Simpan password"
+        var rememberPasswordCheckbox = document.querySelector('#remember-password');
+        
+        // Lakukan tindakan yang sesuai di sini, misalnya menyimpan statusnya ke server atau cookie
+        if (rememberPasswordCheckbox.checked) {
+            // Simpan password
+            alert('Password akan disimpan.');
+        } else {
+            // Jangan simpan password
+            alert('Password tidak akan disimpan.');
+        }
+    }
+
+    // Fungsi untuk menangani klik pada tautan "Lupa password?"
+    function handleForgotPassword() {
+        // Lakukan tindakan yang sesuai di sini, misalnya membuka halaman pemulihan password
+        alert('Anda akan diarahkan ke halaman pemulihan password.');
+    }
+
+    // Tambahkan event listener untuk tombol "Simpan password"
+    var rememberPasswordButton = document.querySelector('#remember-password-button');
+    rememberPasswordButton.addEventListener('click', handleRememberPassword);
+
+    // Tambahkan event listener untuk tautan "Lupa password?"
+    var forgotPasswordLink = document.querySelector('#forgot-password-link');
+    forgotPasswordLink.addEventListener('click', handleForgotPassword);
+</script>
+
+
+
+    <script src="scripts/Java Login Page.js"></script>
+</body>
+</html>
